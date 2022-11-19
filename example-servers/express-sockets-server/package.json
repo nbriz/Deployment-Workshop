@@ -1,0 +1,14 @@
+{
+  "name": "exmple-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Nick Briz <nickbriz@protonmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.4.0"
+  }
+}

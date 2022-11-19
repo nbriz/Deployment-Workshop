@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" value="hello server!">
+    <button>send</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io()
+
+      socket.on('server-response', (data) => {
+        alert(data)
+      })
+
+      function submit () {
+        const data = document.querySelector('input').value
+        socket.emit('client-message', data)
+      }
+
+      document.querySelector('button').addEventListener('click', submit)
+      document.querySelector('input').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') submit()
+      })
+    </script>
+  </body>
+</html>

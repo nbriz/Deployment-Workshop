@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>My Site</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+
+    <section>
+      <input id="user-name" type="text" placeholder="username">
+      <button>add new user</button>
+      <br>
+      <ul>
+        <!-- dynamically crate list of users from the database -->
+      </ul>
+    </section>
+
+    <script>
+
+      // this function sends a "GET" request to the backend server
+      // and displays all the users in a list
+      async function updateUserList () {
+        const req = await fetch('/api/users')
+        const arr = await req.json()
+        console.log(arr);
+        const ul = document.querySelector('ul')
+        ul.innerHTML = ''
+        arr.forEach(user => {
+          const li = document.createElement('li')
+          li.textContent = user
+          ul.appendChild(li)
+        })
+      }
+
+      window.addEventListener('load', updateUserList)
+
+
+      // this function sends the value in the <input> element to the server
+      // by making a "POST" request to the servers's REST API
+      async function submitUser () {
+        const postData = JSON.stringify({
+          username: document.querySelector('#user-name').value
+        })
+        const postHeaders = {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+
+        const req = await fetch('/api/new-user', {
+          method: 'post',
+          headers: postHeaders,
+          body: postData
+        })
+
+        const response = await req.json()
+        if (response.success) updateUserList()
+      }
+
+      // run the submitUser button when we click the submit button
+      document.querySelector('button').addEventListener('click', submitUser)
+
+    </script>
+
+  </body>
+</html>

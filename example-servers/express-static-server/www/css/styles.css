@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+h1 {
+  animation: enter 1.5s ease-in-out 1;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  opacity: 0;
+  animation: enter 1.5s ease-in-out 1;
+  animation-delay: 0.75s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes enter {
+  0% {
+    transform: translate(0px, -50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
