@@ -5,7 +5,7 @@ workshop notes for how to create and deploy a custom [nodejs](https://nodejs.org
 ## Example Servers
 
 the **examples-servers** directory contains a few different types of demo node.js servers.
-- **nodejs-web-server** is an example of a static web server created in nodejs (without any libraries or frameworks)
+- **[nodejs-web-server](example-servers/nodejs-web-server)** is an example of a static web server created in nodejs (without any libraries or frameworks)
 - **nodejs-bbs-server** is an example of creating an old-school BBS ([Bulletin Board System](http://www.bbsdocumentary.com/)) server
 - **express-static-server** is an example of a static web server created using the [express.js](https://expressjs.com/) framework (this is the type of server we produced in the workshop)
 - **express-REST-API-server** is an example of a static web server created with express.js which also includes a custom REST API
