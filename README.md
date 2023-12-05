@@ -38,11 +38,27 @@ ssh root@255.255.255.255
 
 ### 3. install nodejs
 
-The nodejs website has a section for [Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/), under the section for Ubunutu it links to [Node.js binary distributions](https://github.com/nodesource/distributions/blob/master/README.md) which explains we need to run the following command in our droplet's terminal to install nodejs:
+**NOTE:** the instructions below may have changed, make sure these are up to date before running them. The nodejs website has a section for [Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/), under the section for Ubunutu it links to [Node.js binary distributions](https://github.com/nodesource/distributions#debian-and-ubuntu-based-distributions) which explains we need to run the following command in our droplet's terminal to install nodejs:
+
+1 Download and import the Nodesource GPG key
+```
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+```
+2 Create deb repository (CHANGE NODE_VERSION if necessary)
 
 ```
-curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &&\
-apt-get install -y nodejs
+NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+```
+
+3 Run Update and Install
+
+```
+sudo apt-get update
+sudo apt-get install nodejs -y
 ```
 
 ### 4. clone your repository
